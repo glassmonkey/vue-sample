@@ -14,7 +14,7 @@ up: build
 # 開発モードでコンテナに入る。主にライブラリインストールなどに
 .PHONY: run
 run: build
-	docker-compose run  --run app /bin/ash
+	docker-compose run app /bin/ash
 # 起動済みのコンテナの中に入る
 .PHONY: attach
 attach:
