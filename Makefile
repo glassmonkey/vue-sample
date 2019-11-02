@@ -19,3 +19,11 @@ run: build
 .PHONY: attach
 attach:
 	docker-compose exec app
+# リリース状態でコンテナをビルドする
+.PHONY: release-build
+release-build:
+	docker-compose -f docker-compose.release.yml build
+# リリース状態でコンテナを立ち上げる
+.PHONY: release-up
+release-up: release-build
+	docker-compose -f docker-compose.release.yml up
