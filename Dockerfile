@@ -3,13 +3,9 @@ FROM node:lts-alpine as debug
 
 # カレントワーキングディレクトリとして 'app' フォルダを指定する
 WORKDIR /app
-
 COPY package*.json ./
-
 RUN npm install
-
 COPY . .
-
 EXPOSE 8080
 CMD ["npm", "run", "serve"]
 

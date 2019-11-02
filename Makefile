@@ -18,7 +18,7 @@ run: build
 # 起動済みのコンテナの中に入る
 .PHONY: attach
 attach:
-	docker-compose exec app
+	docker-compose exec app /bin/ash
 # リリース状態でコンテナをビルドする
 .PHONY: release-build
 release-build:
@@ -27,3 +27,7 @@ release-build:
 .PHONY: release-up
 release-up: release-build
 	docker-compose -f docker-compose.release.yml up
+# lint実行
+.PHONY: lint
+lint:
+	docker-compose run app npm run lint
