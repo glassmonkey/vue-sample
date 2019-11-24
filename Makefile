@@ -10,6 +10,10 @@ build:
 .PHONY: up
 up: build
 	docker-compose up
+# 開発モードのアプリケーションを落とす
+.PHONY: down
+down:
+	docker-compose down
 .PHONY: run
 # 開発モードでコンテナに入る。主にライブラリインストールなどに
 .PHONY: run
