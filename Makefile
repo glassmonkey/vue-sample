@@ -9,7 +9,7 @@ build:
 # 開発モードでアプリケーションを起動する
 .PHONY: up
 up: build
-	docker-compose up
+	docker-compose up $2
 # 開発モードのアプリケーションを落とす
 .PHONY: down
 down:
@@ -30,7 +30,7 @@ release-build:
 # リリース状態でコンテナを立ち上げる
 .PHONY: release-up
 release-up: release-build
-	docker-compose -f docker-compose.release.yml up
+	docker-compose -f docker-compose.release.yml up $2
 # lint実行
 .PHONY: lint
 lint:
