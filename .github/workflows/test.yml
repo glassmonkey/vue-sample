@@ -8,7 +8,7 @@ jobs:
       - uses: actions/checkout@v1
       - name: develop run
         run: |
-          make up -d
+          docker-compose up -d
       - name: run test
         run: |
           cd tests && \
@@ -22,3 +22,17 @@ jobs:
         with:
           name: images
           path: tests/dist
+      - uses: jakejarvis/s3-sync-action@master
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'ap-northeast-1'
+          SOURCE_DIR: './tests/dist'
+          DEST_DIR:  ${{github.repository}}/${{github.sha}}
+      - name: post maessage
+        run: |
+          cd tests && bash post.sh
+        env:
+          S3_PATH: https://${{ secrets.AWS_S3_BUCKET }}.s3-ap-northeast-1.amazonaws.com/${{github.repository}}/${{github.sha}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
