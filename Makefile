@@ -35,3 +35,7 @@ release-up: release-build
 .PHONY: lint
 lint:
 	docker-compose run app npm run lint
+# 本番ビルドファイル生成
+.PHONY: distribute
+distribute:
+	docker-compose run app npm run build
