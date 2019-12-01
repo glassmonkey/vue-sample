@@ -1,0 +1,16 @@
+name: publish pages
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: distribute static files
+        run: |
+          ls -latr
+      - name: distribute static files
+        run: |
+          make distribute
