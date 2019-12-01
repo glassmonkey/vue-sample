@@ -1,0 +1,24 @@
+name: test
+
+on: pull_request
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: develop run
+        run: |
+          make up -d
+      - name: run test
+        run: |
+          cd tests && \
+          docker-compose build && \
+          docker-compose run app \
+        env:
+          WINDOW_SIZE: 1024,768
+          BASE_URL: https://glassmonkey.github.io/vue-sample/
+          DIFF_URL: http://localhost:8080
+      - uses: actions/upload-artifact@v1
+        with:
+          name: images
+          path: tests/dist
