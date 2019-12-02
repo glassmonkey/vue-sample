@@ -18,10 +18,6 @@ jobs:
           WINDOW_SIZE: 1024,768
           BASE_URL: https://glassmonkey.github.io/vue-sample/
           DIFF_URL: http://localhost:8080
-      - uses: actions/upload-artifact@v1
-        with:
-          name: images
-          path: tests/dist
       - uses: jakejarvis/s3-sync-action@master
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
