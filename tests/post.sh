@@ -1,6 +1,5 @@
 #!/bin/bash
 # referer to https://github.com/jessfraz/shaking-finger-action/blob/master/add-comment.sh
-#!/bin/bash
 set -e
 set -o pipefail
 
