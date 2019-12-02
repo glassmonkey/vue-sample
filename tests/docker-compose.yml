@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  app:
+    image: image-test
+    build:
+      context: ./
+    command: python src/main.py
+    environment:
+      WINDOW_SIZE: ${WINDOW_SIZE}
+      BASE_URL: ${BASE_URL}
+      DIFF_URL: ${DIFF_URL}
+    volumes:
+      - ./src:/app/src
+      - ./dist:/app/dist
